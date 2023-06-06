@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\RentController;
+use App\Http\Controllers\SessionController;
+use App\Http\Controllers\UserController;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,11 +18,48 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+// HOME PAGE
+Route::get("/",function (){
 
-Route::get('/', function () {
-    return view('index',[
-        "name" => "sabri"
+    $products = Product::all();
+
+    return view("index", [
+        "products" => $products
     ]);
 });
 
 
+// REGISTER ROUTES
+Route::get("/register",[RegisterController::class,"create"])->middleware("guest");
+
+
+// LOGIN ROUTES
+Route::get("/login",[SessionController::class,"create"])->middleware("guest");
+
+
+// NEW LISTING PAGE
+Route::get("/new-listing",[ProductsController::class,"create"]);
+
+
+// PROFILE PAGE
+Route::get("/profile",[UserController::class,"create"]);
+
+
+// RENT ROUTE
+Route::post("/rent",[RentController::class,"store"]);
+
+
+
+
+
+
+
+
+
+// TEST ROUTE
+
+Route::get("/test",function (){
+
+
+    return view("test");
+});
