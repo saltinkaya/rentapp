@@ -19,46 +19,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 // HOME PAGE
-Route::get("/",function (){
-
-    $products = Product::all();
-
-    return view("index", [
-        "products" => $products
-    ]);
-});
-
+Route::get("/",[ProductsController::class,"index"]);
 
 // REGISTER ROUTES
-Route::get("/register",[RegisterController::class,"create"])->middleware("guest");
+Route::get("/register", [RegisterController::class, "create"])->middleware("guest");
+Route::post("/register", [RegisterController::class, "store"])->middleware("guest");
 
 
 // LOGIN ROUTES
-Route::get("/login",[SessionController::class,"create"])->middleware("guest");
+Route::get("/login", [SessionController::class, "create"])->middleware("guest");
 
 
 // NEW LISTING PAGE
-Route::get("/new-listing",[ProductsController::class,"create"]);
+Route::get("/new-listing", [ProductsController::class, "create"]);
 
 
 // PROFILE PAGE
-Route::get("/profile",[UserController::class,"create"]);
+Route::get("/profile", [UserController::class, "create"]);
 
 
 // RENT ROUTE
-Route::post("/rent",[RentController::class,"store"]);
-
-
-
-
-
-
-
+Route::post("/rent", [RentController::class, "store"]);
 
 
 // TEST ROUTE
 
-Route::get("/test",function (){
+Route::get("/test", function () {
 
 
     return view("test");

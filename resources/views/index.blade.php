@@ -1,12 +1,5 @@
 <x-layout>
-
-    <ul>
-
-@foreach($products as $product)
-
-    <li>{{$product->title}}</li>
-
-@endforeach
-
-    </ul>
+    <h1>
+        This is Home Page
+    </h1>
 </x-layout>
