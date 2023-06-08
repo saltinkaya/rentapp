@@ -1,3 +1,5 @@
+@props(["categories"])
+
 <x-layout>
     @guest
         <section class="bg-white dark:bg-gray-900">
@@ -84,6 +86,17 @@
                                step="0.01"
                                required
                         />
+
+                    </div>
+                    <div class="mt-6">
+                        <label class="block mb-2 uppercase font-bold text-xs text-gray-700" for="category">
+                            Category
+                        </label>
+                        <select name="category" id="category">
+                            @foreach($categories as $category)
+                                <option value="{{$category->id}}">{{$category->name}}</option>
+                            @endforeach
+                        </select>
 
                     </div>
                     <div class="mt-6">

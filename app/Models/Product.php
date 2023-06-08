@@ -19,4 +19,9 @@ class Product extends Model
     {
         return $this->hasOne(Rent::class);
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

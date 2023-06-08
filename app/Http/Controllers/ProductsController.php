@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -18,7 +19,9 @@ class ProductsController extends Controller
         ]);
     }
     public function create() {
-        return view("products.create");
+        return view("products.create", [
+            "categories" => Category::all()
+        ]);
     }
 
     public function store() {
@@ -27,8 +30,10 @@ class ProductsController extends Controller
             "title" => ["required","min:3","max:255"],
             "description" => ["required","min:3"],
             'image' => 'required|image',
-            "price" => ["required","numeric","min:0"]
+            "price" => ["required","numeric","min:0"],
         ]);
+
+
 
         // Get the image file
         $file = \request()->file("image");
@@ -41,10 +46,10 @@ class ProductsController extends Controller
         Storage::disk("public")->putFileAs("images",$file,$name);
 
 
-
         $attributes['slug'] = Str::slug(request()->title);
         $attributes["image"] = $name;
         $attributes["user_id"] = \request()->user()->id;
+        $attributes["category_id"] = \request()->category;
 
         Product::create($attributes);
 

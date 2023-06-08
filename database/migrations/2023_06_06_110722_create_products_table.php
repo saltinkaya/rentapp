@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string("title");
             $table->text("description");
             $table->string("image");
+            $table->foreignId("category_id")->constrained()->cascadeOnDelete();;
             $table->decimal("price");
             $table->string("slug")->unique();
             $table->timestamps();
