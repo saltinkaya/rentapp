@@ -13,10 +13,8 @@ class ProductsController extends Controller
 
     public function index()
     {
-        $products = Product::all();
-
         return view("index", [
-            "products" => $products
+            "products" => Product::all()
         ]);
     }
     public function create() {
@@ -49,6 +47,8 @@ class ProductsController extends Controller
         $attributes["user_id"] = \request()->user()->id;
 
         Product::create($attributes);
+
+        return redirect("/");
 
     }
 }

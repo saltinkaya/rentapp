@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 // HOME PAGE
-Route::get("/",[ProductsController::class,"index"]);
+Route::get("/", [ProductsController::class, "index"]);
 
 // REGISTER ROUTES
 Route::get("/register", [RegisterController::class, "create"])->middleware("guest");
@@ -28,7 +28,10 @@ Route::post("/register", [RegisterController::class, "store"])->middleware("gues
 
 // LOGIN ROUTES
 Route::get("/login", [SessionController::class, "create"])->middleware("guest");
+Route::post("/login", [SessionController::class, "store"])->middleware("guest");
 
+// LOGOUT ROUTE
+Route::post("/logout", [SessionController::class, "destroy"])->middleware("auth");
 
 // NEW LISTING PAGE
 Route::get("/new-listing", [ProductsController::class, "create"]);
