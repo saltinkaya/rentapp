@@ -32,6 +32,7 @@ Route::get("/login", [SessionController::class, "create"])->middleware("guest");
 
 // NEW LISTING PAGE
 Route::get("/new-listing", [ProductsController::class, "create"]);
+Route::post("/new-listing", [ProductsController::class, "store"]);
 
 
 // PROFILE PAGE
@@ -47,5 +48,7 @@ Route::post("/rent", [RentController::class, "store"]);
 Route::get("/test", function () {
 
 
-    return view("test");
+    return view("test", [
+        "product" => Product::first()
+    ]);
 });

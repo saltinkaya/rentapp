@@ -22,7 +22,9 @@
     @endguest
 
     @auth
-            <form action="/new-listing" method="POST">
+    <section class="bg-white dark:bg-gray-900">
+        <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
+            <form action="/new-listing" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mt-6">
                     <label class="block mb-2 uppercase font-bold text-xs text-gray-700" for="title">
@@ -50,13 +52,28 @@
 
                 </div>
                 <div class="mt-6">
-                    <label class="block mb-2 uppercase font-bold text-xs text-gray-700" for="thumbnail">
+                    <label class="block mb-2 uppercase font-bold text-xs text-gray-700" for="image">
                         Image
                     </label>
                     <input class="border border-gray-200 p-2 w-full rounded"
                            type="file"
-                           name="thumbnail"
-                           id="thumbnail"
+                           name="image"
+                           id="image"
+                           required
+                    />
+
+                </div>
+                <div class="mt-6">
+                    <label class="block mb-2 uppercase font-bold text-xs text-gray-700" for="price">
+                        Price
+                    </label>
+                    <input class="border border-gray-200 p-2 w-full rounded"
+                           type="number"
+                           name="price"
+                           id="price"
+                           min="0"
+                           value="{{ old('title') }}"
+                           step="0.01"
                            required
                     />
 
@@ -65,11 +82,11 @@
                     <button type="submit"
                             class="bg-blue-500 text-white uppercase font-semibold text-xs py-2 px-10 rounded-2xl hover:bg-blue-600"
                     >
-                        Register
+                        List an item
                     </button>
                 </div>
             </form>
-    @endauth
-
-
+           </div>
+    </section>
+        @endauth
 </x-layout>

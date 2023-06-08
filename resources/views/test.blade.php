@@ -1,4 +1,4 @@
 <x-layout>
-<x-product-card/>
+    <img src="/storage/images/{{$product->image}}"  alt="alt-text"/>
 
 </x-layout>
