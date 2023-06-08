@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductDetailController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RentController;
@@ -43,7 +44,10 @@ Route::get("/profile", [UserController::class, "create"]);
 
 
 // RENT ROUTE
-Route::post("/rent", [RentController::class, "store"]);
+Route::post("/rent/{product}", [RentController::class, "store"]);
+
+// PRODUCTS VIEW PAGE
+Route::get("/products/{product:slug}",[ProductDetailController::class,"create"]);
 
 
 // TEST ROUTE

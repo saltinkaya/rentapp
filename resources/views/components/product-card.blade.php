@@ -2,7 +2,7 @@
 
 <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
 
-    <form action="/rent" method="POST">
+    <form action="/rent/{{$product->id}}" method="POST">
         @csrf
         <div class="max-w-6xl mx-auto">
             <div class="flex items-center justify-center min-h-screen">
@@ -27,11 +27,18 @@
                                     <p class="text-sm text-gray-700">{{($product->created_at)->diffForHumans()}}</p>
                                 </div>
                             </div>
-                            <div class="flex">
-                                <button type="submit"
-                                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                    Rent
-                                </button>
+                            <div class="flex justify-center">
+                                @auth()
+                                    <button type="submit"
+                                            class="bg-blue-900 py-2 w-6/12 px-3 mx-2 rounded-xl text-white hover:bg-blue-700"
+                                            value="{{$product->id}}"
+                                    >
+                                        Rent
+                                    </button>
+                                @endauth
+                                <a href="/products/{{$product->slug}}"
+                                   class="bg-blue-900 py-2 px-3 w-6/12
+                                   mx-2 text-center rounded-xl text-white hover:bg-blue-700">See Details</a>
                             </div>
                         </div>
                     </div>
