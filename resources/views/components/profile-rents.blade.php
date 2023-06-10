@@ -2,7 +2,7 @@
 
 <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
 
-    <form action="/rent/{{$product->id}}" method="POST">
+    <form action="/rent/drop/{{$product->id}}" method="POST">
         @csrf
         <div class="max-w-6xl mx-auto">
             <div class="flex items-center justify-center min-h-screen">
@@ -33,7 +33,7 @@
                                             class="bg-blue-900 py-2 w-6/12 px-3 mx-2 rounded-xl text-white hover:bg-blue-700"
                                             value="{{$product->id}}"
                                     >
-                                        Rent
+                                        Drop
                                     </button>
                                 @endauth
                                 <a href="/products/{{$product->slug}}"

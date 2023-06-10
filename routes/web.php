@@ -5,6 +5,7 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RentController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
@@ -52,10 +53,4 @@ Route::get("/products/{product:slug}",[ProductDetailController::class,"create"])
 
 // TEST ROUTE
 
-Route::get("/test", function () {
-
-
-    return view("test", [
-        "product" => Product::first()
-    ]);
-});
+Route::get("/test",[TestController::class,"create"]);

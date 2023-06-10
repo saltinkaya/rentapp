@@ -2,7 +2,10 @@
 
 <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
 
-    <form action="/rent/{{$product->id}}" method="POST">
+    <h1>
+        {{ $product->title }}
+    </h1>
+    <form action="/products/{{$product->slug}}/delete" method="POST">
         @csrf
         <div class="max-w-6xl mx-auto">
             <div class="flex items-center justify-center min-h-screen">
@@ -30,10 +33,10 @@
                             <div class="flex justify-center">
                                 @auth()
                                     <button type="submit"
-                                            class="bg-blue-900 py-2 w-6/12 px-3 mx-2 rounded-xl text-white hover:bg-blue-700"
+                                            class="bg-red-900 py-2 w-6/12 px-3 mx-2 rounded-xl text-white hover:bg-blue-700"
                                             value="{{$product->id}}"
                                     >
-                                        Rent
+                                        Delete
                                     </button>
                                 @endauth
                                 <a href="/products/{{$product->slug}}"

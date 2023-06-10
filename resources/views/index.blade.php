@@ -12,11 +12,12 @@
 
             <!-- Column -->
             @foreach($products as $product)
-                <x-product-card :product="$product"/>
+                @if(empty($product->rent))
+                    <x-product-card :product="$product"/>
+                @endif
             @endforeach
 
             <!-- END Column -->
-
 
         </div>
     </div>

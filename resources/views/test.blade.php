@@ -1,5 +1,12 @@
 <x-layout>
-{{--    <img src="/storage/images/{{$product->image}}"  alt="alt-text"/>--}}
-    <img src="{{asset('storage/images/'.$product->image)}}"  alt="alt-text"/>
+
+    @foreach ($products as $product)
+
+
+    <x-profile-listings :product="$product"/>
+
+    @endforeach
+
+
 
 </x-layout>
