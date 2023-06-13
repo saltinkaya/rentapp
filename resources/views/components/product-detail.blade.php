@@ -15,28 +15,41 @@
             <h2 class="pt-3 font-bold">Category</h2>
             <p>{{$product->category->name}}</p>
 
-            <form class="py-2 font-bold" action="/rent/{{$product->id}}" method="post">
-                @csrf
-                @auth
-                    <button type="submit"
-                            class="bg-blue-900 py-2 w-6/12  rounded-xl text-white hover:bg-blue-700"
-                            name="product_id"
-                            value="{{$product->id}}"
-                    >Rent
-                    </button>
-                @endauth
-                @guest
-                    <div class="flex">
-                        <a href="/register"
-                           class="bg-blue-900 py-2 px-3 w-6/12
-                                   mx-2 text-center rounded-xl text-white hover:bg-blue-700">Register</a>
-                        <a href="/login"
-                           class="bg-blue-900 py-2 px-3 w-6/12
-                                   mx-2 text-center rounded-xl text-white hover:bg-blue-700">Login</a>
-                    </div>
-                @endguest
 
-            </form>
+            @auth
+
+                @if($product->user->id === auth()->user()->id)
+
+                    <a href="/edit/{{$product->slug}}"
+                       class="bg-blue-900 py-2 px-3 w-6/12
+                                   mx-2 text-center rounded-xl text-white hover:bg-blue-700">Edit</a>
+
+                @else
+                    <form class="py-2 font-bold" action="/rent/{{$product->id}}" method="post">
+                        @csrf
+
+                        <button type="submit"
+                                class="bg-blue-900 py-2 w-6/12  rounded-xl text-white hover:bg-blue-700"
+                                name="product_id"
+                                value="{{$product->id}}"
+                        >Rent
+                        </button>
+                    </form>
+
+                @endif
+
+            @endauth
+            @guest
+                <div class="flex py-2">
+                    <a href="/register"
+                       class="bg-blue-900 py-2 px-3 w-6/12
+                                   mx-2 text-center rounded-xl text-white hover:bg-blue-700">Register</a>
+                    <a href="/login"
+                       class="bg-blue-900 py-2 px-3 w-6/12
+                                   mx-2 text-center rounded-xl text-white hover:bg-blue-700">Login</a>
+                </div>
+            @endguest
+
         </div>
     </div>
 

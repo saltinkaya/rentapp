@@ -21,4 +21,10 @@ class RentController extends Controller
         return redirect("/");
 
     }
+
+    public function destroy(Product $product) {
+       $product->rent->delete();
+
+       return redirect("/");
+    }
 }

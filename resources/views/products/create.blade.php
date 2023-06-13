@@ -82,7 +82,7 @@
                                name="price"
                                id="price"
                                min="0"
-                               value="{{ old('title') }}"
+                               value="{{ old('price') }}"
                                step="0.01"
                                required
                         />

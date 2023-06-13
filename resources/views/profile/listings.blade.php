@@ -11,8 +11,8 @@
             </div>
             <div class="mx-2 my-2 flex items-center justify-center h-2/3">
 
-                @foreach($rents as $rent)
-                    <x-profile-listings :product="$rent->product_id"/>
+                @foreach($listings as $list)
+                    <x-profile-listings :product="$list"/>
                 @endforeach
 
             </div>

@@ -9,7 +9,8 @@
                 <div class="max-w-sm w-full py-2 px-2">
                     <div class="bg-white shadow-xl rounded-lg overflow-hidden">
                         <div>
-                            <img width=400 height="400" src="/storage/images/{{ $product->image }}" alt="{{ $product->slug }}">
+                            <img width=400 height="400" src="/storage/images/{{ $product->image }}"
+                                 alt="{{ $product->slug }}">
                         </div>
                         <div class="p-4">
                             <p class="uppercase tracking-wide text-sm font-bold text-gray-700">{{ $product->title }}</p>
@@ -29,12 +30,21 @@
                             </div>
                             <div class="flex justify-center">
                                 @auth()
-                                    <button type="submit"
-                                            class="bg-blue-900 py-2 w-6/12 px-3 mx-2 rounded-xl text-white hover:bg-blue-700"
-                                            value="{{$product->id}}"
-                                    >
-                                        Rent
-                                    </button>
+                                    @if(auth()->user()->id === $product->user->id)
+
+                                        <a href="/edit/{{$product->slug}}"
+                                           class="bg-red-700 py-2 px-3 w-6/12
+                                   mx-2 text-center rounded-xl text-white hover:bg-blue-700">Edit</a>
+
+                                    @else
+                                        <button type="submit"
+                                                class="bg-blue-700 py-2 w-6/12 px-3 mx-2 rounded-xl text-white hover:bg-blue-700"
+                                                value="{{$product->id}}"
+                                        >
+                                            Rent
+                                        </button>
+
+                                    @endif
                                 @endauth
                                 <a href="/products/{{$product->slug}}"
                                    class="bg-blue-900 py-2 px-3 w-6/12

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->decimal("price");
             $table->string("slug")->unique();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
